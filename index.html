@@ -25,7 +25,7 @@
       <h1 class="title">Trendline</h1>
     </header>
     <div id="container">
-      <p class="tagline">Trendline and graph generator for group of points. Using google charts</p>
+      <p class="tagline">Trendline and graph generator for group of points.</p>
       <div id="main" role="main">
         <div class="download-bar">
         <div class="inner">
@@ -35,19 +35,28 @@
         </div>
         <span class="blc"></span><span class="trc"></span>
         </div>
+        <div class="ui one column stackable center aligned page grid">
+          <div class="column twelve wide">
+            <button id="clear" class="ui button">
+              Clear Fields
+            </button>
+          </div>
+        </div>
         <div id="content" class="ui grid">
           <div class="eight wide column"><h2 class="ui header center">X Value</h1></div>
           <div class="eight wide column"><h2 class="ui header center">Y Value</h1></div>
-          <div class="eight wide column ui input"><input class="xval" type="number" placeholder="Empty"></div>
-          <div class="eight wide column ui input"><input class="yval" type="number" placeholder="Empty"></div>
+          <div class="eight wide column ui input"><input class="xval" type="text" placeholder="Empty"></div>
+          <div class="eight wide column ui input"><input class="yval" type="text" placeholder="Empty"></div>
         </div>
         <br/>
-        <button class="circular ui green icon button"> + </button>
+        <button id="add" class="circular ui green icon button"> + </button>
+        <button id="remove" class="circular ui red icon button"> - </button>
         <div class="ui one column stackable center aligned page grid">
            <div class="column twelve wide">
-               <button class="ui primary button">
+               <button id="send" class="ui primary button">
                  Draw
                </button>
+               <h3 id="error_msg" class="ui header" style="color:red">The parameters are not valid</h2>
            </div>
         </div>
       </div>
