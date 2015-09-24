@@ -1,4 +1,6 @@
 var rows;
+var notValid = 'The parameters are not valid';
+var fewParameters = 'Please write at least 2 points';
 
 function addRow(xvalue, yvalue){
   var row = '<div id="row'+(rows++)+'" class="row ui grid">'+
@@ -16,7 +18,7 @@ $('#add').on('click',function(){
 var start = function(){
   $('.row').remove();
   rows = 0;
-  $('#error_msg').hide();
+  //$('#error_msg').hide();
   if (localStorage.getItem('trendlineData') === null) {
     localStorage.setItem('trendlineData',JSON.stringify([]));
   }
@@ -40,6 +42,7 @@ $('#clear').on('click',function(){
 
 var validateForm = function(){
   var ret = true;
+  $('#error_msg').html("");
   $('.row').each(function(){
     $(this).children().removeClass('error');
     var xval = $(this).find('.xval');
@@ -57,11 +60,8 @@ var validateForm = function(){
       ret = false;
     }
   });
-  if(ret){
-    $('#error_msg').hide();
-  }
-  else{
-    $('#error_msg').show();
+  if(!ret){
+    $('#error_msg').html(notValid);
   }
   return ret;
 }
@@ -77,6 +77,11 @@ $('#send').on('click',function(){
         points.push([Number(xval.val()),Number(yval.val())]);
       }
     });
+    if(points.length < 2){
+      $('#error_msg').html(fewParameters);
+      return;
+    }
     localStorage.setItem('trendlineData',JSON.stringify(points));
+    window.location = './graph.html';
   }
 });
